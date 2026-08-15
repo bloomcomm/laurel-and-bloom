@@ -3,32 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Laurel & Bloom — Floral Atelier</title>
-  <meta name="description" content="Laurel & Bloom — Handcrafted floral arrangements, weddings, and corporate florals. Seasonal blooms, bespoke designs, local delivery." />
+  <title>Laurel & Bloom — Premium Bouquets & Floral Gifts</title>
+  <meta name="description" content="Discover handcrafted floral bouquets, luxury gifts, and seasonal arrangements. Same-day delivery available. Perfect for weddings, events, and every special moment." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg-1: #071026;
-      --bg-2: #061227;
-      --card: rgba(255,255,255,0.04);
-      --accent: #c96ca3; /* pink */
-      --accent-2: #7cc576; /* green */
-      --text: #e9f2ff;
-      --muted: rgba(233,242,255,0.72);
-      --radius: 12px;
-      --glass-border: rgba(255,255,255,0.04);
-      --max-width: 1100px;
+      --bg-1: #0a1428;
+      --bg-2: #051a2f;
+      --card: rgba(255,255,255,0.05);
+      --accent: #d4677f;
+      --accent-2: #8dd895;
+      --accent-3: #f4d4a6;
+      --text: #f0f8ff;
+      --muted: rgba(240,248,255,0.7);
+      --radius: 14px;
+      --glass-border: rgba(255,255,255,0.08);
+      --max-width: 1200px;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
     }
 
     [data-theme="light"]{
-      --bg-1: #fff8fb;
-      --bg-2: #f6fff4;
-      --card: rgba(2,6,23,0.03);
-      --text: #071026;
-      --muted: rgba(7,16,38,0.6);
-      --glass-border: rgba(7,16,38,0.06);
+      --bg-1: #fdf9f6;
+      --bg-2: #fef5f0;
+      --card: rgba(30,10,20,0.04);
+      --text: #2d1820;
+      --muted: rgba(45,24,32,0.68);
+      --glass-border: rgba(45,24,32,0.08);
+      --accent: #d4677f;
+      --accent-2: #7dc876;
+      --accent-3: #f4d4a6;
     }
 
     *{box-sizing:border-box}
@@ -40,81 +44,162 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       overflow-x:hidden;
+      line-height:1.6;
     }
 
+    /* Typography */
+    h1, h2, h3{font-family:'Cormorant Garamond',serif;font-weight:700;letter-spacing:.5px}
+    h1{font-size:clamp(2rem,5vw,3.2rem)}
+    h2{font-size:clamp(1.5rem,4vw,2.4rem);margin:0 0 .8rem}
+    h3{font-size:1.3rem}
+
     /* Layout utils */
-    .container{max-width:var(--max-width);margin:0 auto;padding:1rem;}
-    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0;}
-    .brand{font-weight:800;color:var(--text);text-decoration:none;font-size:1.15rem;display:flex;align-items:center;gap:.6rem}
-    .brand .logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#051025;font-weight:800;font-size:.95rem}
-    .nav a{color:var(--muted);text-decoration:none;margin-left:1rem}
-    .controls{display:flex;gap:.5rem;align-items:center}
-    .btn{background:transparent;border:1px solid var(--glass-border);color:var(--text);padding:.6rem .9rem;border-radius:10px;cursor:pointer;font-weight:600}
-    .icon-btn{padding:.5rem .6rem}
-    .primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;border:none;box-shadow:0 8px 30px rgba(0,0,0,0.12)}
-    .small{padding:.35rem .6rem;font-size:.9rem}
+    .container{max-width:var(--max-width);margin:0 auto;padding:1.2rem;}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem 0}
+    .brand{font-weight:800;color:var(--text);text-decoration:none;font-size:1.25rem;display:flex;align-items:center;gap:.8rem;font-family:'Cormorant Garamond',serif;letter-spacing:1px}
+    .brand .logo{width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fef5f0;font-weight:900;font-size:1.1rem;box-shadow:0 4px 15px rgba(212,103,127,0.25)}
+    .nav{display:flex;gap:2rem;font-weight:500}
+    .nav a{color:var(--muted);text-decoration:none;position:relative;transition:color .3s}
+    .nav a:hover{color:var(--accent)}
+    .nav a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .3s}
+    .nav a:hover::after{transform:scaleX(1);transform-origin:left}
+    .controls{display:flex;gap:.8rem;align-items:center}
+    .btn{background:transparent;border:1.5px solid var(--glass-border);color:var(--text);padding:.7rem 1.1rem;border-radius:10px;cursor:pointer;font-weight:600;transition:all .3s;font-size:.95rem}
+    .btn:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,103,127,0.15)}
+    .icon-btn{padding:.55rem .7rem}
+    .primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;border:none;box-shadow:0 8px 25px rgba(212,103,127,0.3);position:relative;overflow:hidden}
+    .primary::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);opacity:0;transition:opacity .3s}
+    .primary:hover::before{opacity:1}
+    .primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(212,103,127,0.4)}
+    .primary:active{transform:translateY(-1px)}
+    .small{padding:.4rem .7rem;font-size:.9rem}
+    .secondary{background:rgba(212,103,127,0.1);border-color:var(--accent);color:var(--accent)}
+    .secondary:hover{background:rgba(212,103,127,0.2)}
 
     /* Hero */
-    .hero{position:relative;min-height:62vh;display:flex;align-items:center;overflow:hidden;border-bottom-left-radius:24px;border-bottom-right-radius:24px}
-    #heroCanvas{position:absolute;inset:0;z-index:0;opacity:.9}
-    .hero-inner{position:relative;z-index:2;display:flex;gap:2rem;align-items:center;padding:4rem 0}
-    .hero-content{flex:1}
-    .hero h1{font-size:clamp(1.6rem,4vw,2.6rem);margin:0 0 .6rem}
-    .lead{color:var(--muted);margin:0 0 1rem;max-width:58ch}
-    .hero-ctas{display:flex;gap:.6rem;align-items:center}
-    .hero-panel{width:280px}
-    .panel-card{background:var(--card);backdrop-filter: blur(8px);padding:1.2rem;border-radius:var(--radius);border:1px solid var(--glass-border);text-align:center}
+    .hero{position:relative;min-height:70vh;display:flex;align-items:center;overflow:hidden;border-bottom-left-radius:28px;border-bottom-right-radius:28px}
+    #heroCanvas{position:absolute;inset:0;z-index:0;opacity:.85}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%, rgba(212,103,127,0.1) 0%, transparent 50%);z-index:1}
+    .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 80%, rgba(141,216,149,0.08) 0%, transparent 50%);z-index:1}
+    .hero-inner{position:relative;z-index:2;display:flex;gap:3rem;align-items:center;padding:4rem 0;justify-content:space-between}
+    .hero-content{flex:1;max-width:620px}
+    .hero h1{margin:0 0 1rem;line-height:1.2}
+    .hero-tag{display:inline-block;background:rgba(212,103,127,0.15);color:var(--accent);padding:.4rem .9rem;border-radius:20px;font-size:.85rem;font-weight:600;margin-bottom:1.2rem}
+    .lead{color:var(--muted);margin:0 0 1.4rem;max-width:65ch;font-size:1.05rem;line-height:1.8}
+    .hero-ctas{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+    .hero-panel{flex:1;min-width:280px;display:flex;flex-direction:column;gap:1rem}
+    .panel-card{background:var(--card);backdrop-filter:blur(10px);padding:1.4rem;border-radius:var(--radius);border:1px solid var(--glass-border);box-shadow:0 8px 32px rgba(0,0,0,0.1);transition:all .3s;position:relative;overflow:hidden}
+    .panel-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0));opacity:0;transition:opacity .3s}
+    .panel-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(212,103,127,0.2);border-color:var(--accent)}
+    .panel-card:hover::before{opacity:1}
+    .panel-label{color:var(--accent);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem}
+    .panel-title{font-size:1.15rem;font-weight:700;margin:.4rem 0 .2rem;color:var(--text)}
+    .panel-desc{color:var(--muted);font-size:.95rem}
+    .panel-price{color:var(--accent);font-weight:700;font-size:1.3rem;margin-top:.6rem}
 
     /* Sections */
-    .section{padding:3.2rem 0}
-    .alt{background:linear-gradient(180deg, rgba(0,0,0,0.01), transparent)}
-    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
-    .service-card{background:var(--card);padding:1.2rem;border-radius:12px;border:1px solid var(--glass-border);box-shadow:0 6px 20px rgba(0,0,0,0.06);transition:transform .22s}
-    .service-card:focus,.service-card:hover{transform:translateY(-6px);outline:none}
+    .section{padding:4rem 0;position:relative}
+    .section.alt{background:linear-gradient(180deg,rgba(212,103,127,0.03),rgba(141,216,149,0.02))}
+    .section-header{text-align:center;margin-bottom:3rem}
+    .section-header p{max-width:600px;margin:0 auto}
+    
+    /* Services Grid */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+    .service-card{background:var(--card);padding:1.8rem;border-radius:14px;border:1px solid var(--glass-border);box-shadow:0 6px 20px rgba(0,0,0,0.06);transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+    .service-card::before{content:'';position:absolute;top:0;right:-50px;width:100px;height:100px;background:radial-gradient(circle,var(--accent),transparent);opacity:0;transition:all .3s}
+    .service-card:hover{transform:translateY(-8px);box-shadow:0 12px 40px rgba(212,103,127,0.2);border-color:var(--accent);background:rgba(255,255,255,0.07)}
+    .service-card:hover::before{opacity:.15;right:-20px}
+    .service-card h3{margin:0 0 .8rem;color:var(--text)}
+    .service-card p{color:var(--muted);margin:0 0 1.2rem;font-size:.95rem}
+    .service-icon{font-size:2rem;margin-bottom:.8rem}
+
+    /* Features/Stats */
+    .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.5rem}
+    .feature-card{text-align:center;padding:1.5rem}
+    .feature-number{font-size:2.5rem;font-weight:800;color:var(--accent);font-family:'Cormorant Garamond',serif}
+    .feature-label{color:var(--muted);font-size:.95rem;margin-top:.4rem}
 
     /* Gallery */
-    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .tile{background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:10px;padding:2rem;text-align:center;color:#051025;font-weight:700;min-height:120px;display:flex;align-items:center;justify-content:center}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem}
+    .tile{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:12px;padding:2.2rem;text-align:center;color:#fef5f0;font-weight:700;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:1.1rem;transition:all .3s;cursor:pointer;box-shadow:0 8px 25px rgba(212,103,127,0.2);position:relative;overflow:hidden}
+    .tile::before{content:'';position:absolute;inset:0;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,0.1) 50%,transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none}
+    .tile:hover{transform:translateY(-6px);box-shadow:0 12px 35px rgba(212,103,127,0.3)}
+    .tile:hover::before{opacity:1}
+    .tile-sub{font-size:.8rem;color:rgba(255,255,255,0.85);margin-top:.4rem;font-weight:500}
 
     /* Contact form */
-    .contact-form{max-width:640px}
-    .form-row{display:flex;flex-direction:column;margin-bottom:1rem}
-    .form-row label{font-weight:700;margin-bottom:.4rem}
-    .form-row input,.form-row textarea{padding:.75rem;border-radius:8px;border:1px solid var(--glass-border);background:transparent;color:var(--text)}
-    .error{color:#ffb4b4;font-size:.85rem;height:1.1rem;margin-top:.25rem}
+    .contact-section{max-width:700px;margin:0 auto}
+    .contact-form{background:var(--card);padding:2rem;border-radius:16px;border:1px solid var(--glass-border);box-shadow:0 8px 32px rgba(0,0,0,0.1)}
+    .form-row{display:flex;flex-direction:column;margin-bottom:1.2rem}
+    .form-row label{font-weight:600;margin-bottom:.6rem;color:var(--text);font-size:.95rem}
+    .form-row input,.form-row textarea{padding:.85rem;border-radius:8px;border:1px solid var(--glass-border);background:rgba(255,255,255,0.02);color:var(--text);transition:all .3s;font-family:inherit;font-size:1rem}
+    .form-row input::placeholder,.form-row textarea::placeholder{color:rgba(240,248,255,0.4)}
+    .form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--accent);background:rgba(212,103,127,0.08);box-shadow:0 0 0 3px rgba(212,103,127,0.1)}
+    .error{color:#ff9999;font-size:.85rem;height:1.2rem;margin-top:.3rem;display:block}
+    .form-actions{display:flex;gap:.8rem;align-items:center;margin-top:1.6rem}
+    .form-actions button{flex:1}
+    .form-status{margin-top:.8rem;padding:1rem;border-radius:8px;background:rgba(212,103,127,0.1);color:var(--accent);font-weight:500}
+    .form-status.success{background:rgba(141,216,149,0.1);color:var(--accent-2)}
 
     /* Footer */
-    .site-footer{padding:1.6rem 0;color:var(--muted);text-align:center;border-top:1px solid rgba(0,0,0,0.04);margin-top:2rem}
-    .socials{display:flex;gap:.6rem;justify-content:center;margin-top:.6rem}
+    .site-footer{padding:2.5rem 0;color:var(--muted);border-top:1px solid rgba(0,0,0,0.1);margin-top:3rem}
+    .footer-content{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:2rem}
+    .footer-section h4{color:var(--text);font-weight:700;margin:0 0 .8rem;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px}
+    .footer-section p{margin:0 0 .5rem;font-size:.9rem}
+    .footer-section a{color:var(--muted);text-decoration:none;transition:color .3s}
+    .footer-section a:hover{color:var(--accent)}
+    .footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(0,0,0,0.1);font-size:.9rem}
+    .socials{display:flex;gap:.8rem;justify-content:center;align-items:center}
+    .social-link{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--glass-border);border-radius:8px;color:var(--muted);text-decoration:none;transition:all .3s;font-size:1.1rem}
+    .social-link:hover{border-color:var(--accent);color:var(--accent);background:rgba(212,103,127,0.1)}
 
     /* Modal */
-    .modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(rgba(2,6,23,0.45), rgba(2,6,23,0.6));z-index:999}
-    .modal-backdrop[aria-hidden="false"]{display:flex}
-    .modal-content{background:var(--card);border-radius:12px;padding:1.6rem;max-width:520px;width:92%;position:relative;border:1px solid var(--glass-border)}
+    .modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(5,26,47,0.6);z-index:999;backdrop-filter:blur(4px)}
+    .modal-backdrop[aria-hidden="false"]{display:flex;animation:fadeIn .3s ease}
+    .modal-content{background:var(--card);border-radius:16px;padding:2rem;max-width:560px;width:92%;position:relative;border:1px solid var(--glass-border);box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:slideUp .3s ease}
+    .modal-close{position:absolute;top:1rem;right:1rem}
 
     /* Mobile */
     .mobile-only{display:none}
-    .mobile-menu{display:none;flex-direction:column;background:var(--card);border-top:1px solid var(--glass-border);padding:.5rem}
+    .mobile-menu{display:none;flex-direction:column;background:var(--card);border-top:1px solid var(--glass-border);padding:1rem}
+    .mobile-menu a{padding:.6rem;color:var(--muted);text-decoration:none;transition:color .3s}
+    .mobile-menu a:hover{color:var(--accent)}
 
     /* Helpers */
     .muted{color:var(--muted)}
     .hidden{display:none}
+    .text-accent{color:var(--accent)}
+
+    /* Animations */
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    
+    .float{animation:float 3s ease-in-out infinite}
 
     /* Responsive */
     @media (max-width:900px){
       .services-grid{grid-template-columns:repeat(2,1fr)}
       .gallery-grid{grid-template-columns:repeat(2,1fr)}
-      .hero-inner{flex-direction:column;align-items:flex-start}
-      .hero-panel{width:100%}
-      .mobile-only{display:inline-flex}
+      .features-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-inner{flex-direction:column;align-items:stretch}
+      .hero-panel{min-width:auto}
       .nav{display:none}
+      .mobile-only{display:inline-flex}
       .mobile-menu{display:flex}
+      .footer-content{grid-template-columns:repeat(2,1fr)}
     }
+    
     @media (max-width:600px){
       .services-grid{grid-template-columns:1fr}
       .gallery-grid{grid-template-columns:1fr}
-      .mobile-only{display:inline-flex}
-      .hero{min-height:55vh}
+      .features-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{min-height:60vh}
+      .hero h1{font-size:1.8rem}
+      .lead{font-size:1rem}
+      .footer-content{grid-template-columns:1fr}
+      .form-actions{flex-direction:column}
+      .form-actions button{width:100%}
     }
 
     /* reduce motion class */
@@ -125,15 +210,16 @@
   <header class="site-header" role="banner">
     <div class="container header-inner">
       <a class="brand" href="#">
-        <span class="logo" aria-hidden="true">L&B</span>
+        <span class="logo" aria-hidden="true">❀</span>
         <span>
           Laurel &amp; Bloom
-          <div style="font-size:.8rem;color:var(--muted);font-weight:600">Floral Atelier</div>
+          <div style="font-size:.75rem;color:var(--muted);font-weight:500;letter-spacing:.5px">PREMIUM BOUQUETS</div>
         </span>
       </a>
       <nav class="nav" id="nav" aria-label="Primary">
         <a href="#services">Services</a>
-        <a href="#gallery">Collections</a>
+        <a href="#collections">Collections</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="controls">
@@ -143,165 +229,294 @@
     </div>
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
       <a href="#services">Services</a>
-      <a href="#gallery">Collections</a>
+      <a href="#collections">Collections</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
   </header>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero" id="home" aria-label="Hero">
       <canvas id="heroCanvas" aria-hidden="true"></canvas>
       <div class="container hero-inner">
         <div class="hero-content">
-          <h1>Fresh florals for every moment</h1>
-          <p class="lead">Laurel &amp; Bloom crafts seasonal, sustainable bouquets and installations for weddings, events, and everyday joy. Local delivery and bespoke consultations available.</p>
+          <div class="hero-tag">✨ Handcrafted with Love</div>
+          <h1>Bloom Moments, Create Memories</h1>
+          <p class="lead">Exquisite floral arrangements for every occasion. From romantic roses to vibrant seasonal bouquets, our carefully curated collections bring joy and elegance to your celebrations.</p>
           <div class="hero-ctas">
-            <a class="btn primary" id="ctaCollections" href="#gallery">Shop Collections</a>
-            <button class="btn" id="openModal">Book a Consultation</button>
+            <a class="btn primary" href="#collections">Explore Collections</a>
+            <button class="btn secondary" id="openModal">Book Consultation</button>
           </div>
         </div>
-        <div class="hero-panel" aria-hidden="true">
+        <div class="hero-panel">
+          <div class="panel-card float">
+            <div class="panel-label">🌹 Bestseller</div>
+            <div class="panel-title">Romance Collection</div>
+            <div class="panel-desc">Premium red roses with luxury wrapping</div>
+            <div class="panel-price">From $89</div>
+            <button class="btn small primary" style="width:100%;margin-top:1rem">Quick Order</button>
+          </div>
           <div class="panel-card">
-            Spring Bouquet<br>
-            <span class="muted">Hand-tied, seasonal blooms</span>
+            <div class="panel-label">🚚 Free Delivery</div>
+            <div class="panel-title">Same-Day Available</div>
+            <div class="panel-desc">Within 5km radius on orders before 2 PM</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section container" id="services" aria-labelledby="servicesTitle">
-      <h2 id="servicesTitle">Our Services</h2>
-      <p class="muted">From one-off bouquets to large-scale installations — handcrafted with care.</p>
-      <div class="grid services-grid" role="list">
+    <!-- Features Section -->
+    <section class="section container" aria-labelledby="featuresTitle">
+      <div class="section-header">
+        <h2 id="featuresTitle">Why Choose Laurel &amp; Bloom?</h2>
+        <p class="muted">Trusted by thousands of happy customers</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-number">1200+</div>
+          <div class="feature-label">Happy Customers</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-number">4.9★</div>
+          <div class="feature-label">Average Rating</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-number">24hrs</div>
+          <div class="feature-label">Same-Day Delivery</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-number">100%</div>
+          <div class="feature-label">Satisfaction Guaranteed</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section alt container" id="services" aria-labelledby="servicesTitle">
+      <div class="section-header">
+        <h2 id="servicesTitle">Our Services</h2>
+        <p class="muted">Artfully designed for your perfect moment</p>
+      </div>
+      <div class="services-grid" role="list">
         <article class="service-card" tabindex="0" role="listitem">
-          <h3>Bouquets &amp; Arrangements</h3>
-          <p>Carefully curated seasonal bouquets for delivery or pickup.</p>
-          <button class="btn small" data-focus-target="contact">Order</button>
+          <div class="service-icon">💐</div>
+          <h3>Fresh Bouquets</h3>
+          <p>Hand-tied arrangements with the freshest seasonal blooms, wrapped in premium materials.</p>
+          <button class="btn small primary" data-focus-target="contact">Order Now</button>
         </article>
 
         <article class="service-card" tabindex="0" role="listitem">
-          <h3>Weddings &amp; Events</h3>
-          <p>Bespoke proposals, site visits, and full installation services.</p>
-          <button class="btn small" data-focus-target="modal">Plan</button>
+          <div class="service-icon">💍</div>
+          <h3>Wedding Florals</h3>
+          <p>Bespoke bridal bouquets, centerpieces, and installations for your dream wedding day.</p>
+          <button class="btn small primary" data-focus-target="modal">Plan Now</button>
         </article>
 
         <article class="service-card" tabindex="0" role="listitem">
-          <h3>Corporate</h3>
-          <p>Regular deliveries and seasonal displays for offices and hotels.</p>
-          <button class="btn small" data-focus-target="contact">Inquire</button>
+          <div class="service-icon">🎁</div>
+          <h3>Gift Packages</h3>
+          <p>Curated gift sets combining flowers with chocolates, candles, and luxury items.</p>
+          <button class="btn small primary" data-focus-target="contact">Explore</button>
+        </article>
+
+        <article class="service-card" tabindex="0" role="listitem">
+          <div class="service-icon">🏢</div>
+          <h3>Corporate Flowers</h3>
+          <p>Regular office refreshes, event arrangements, and seasonal displays for businesses.</p>
+          <button class="btn small primary" data-focus-target="contact">Inquire</button>
+        </article>
+
+        <article class="service-card" tabindex="0" role="listitem">
+          <div class="service-icon">🎉</div>
+          <h3>Event Installations</h3>
+          <p>Large-scale florals for birthdays, anniversaries, and special celebrations.</p>
+          <button class="btn small primary" data-focus-target="modal">Discuss</button>
+        </article>
+
+        <article class="service-card" tabindex="0" role="listitem">
+          <div class="service-icon">🌿</div>
+          <h3>Subscription Box</h3>
+          <p>Fresh flowers delivered weekly to brighten your home or office space.</p>
+          <button class="btn small primary" data-focus-target="contact">Subscribe</button>
         </article>
       </div>
     </section>
 
-    <section class="section alt container" id="gallery" aria-labelledby="galleryTitle">
-      <h2 id="galleryTitle">Collections</h2>
-      <div class="grid gallery-grid" aria-hidden="false" role="list">
-        <div class="tile" role="listitem">Peony Luxe</div>
-        <div class="tile" role="listitem">Wild Meadow</div>
-        <div class="tile" role="listitem">Garden Rose</div>
-        <div class="tile" role="listitem">Seasonal Wrap</div>
+    <!-- Collections Gallery -->
+    <section class="section container" id="collections" aria-labelledby="collectionsTitle">
+      <div class="section-header">
+        <h2 id="collectionsTitle">Our Collections</h2>
+        <p class="muted">Each arrangement is a masterpiece</p>
       </div>
-      <p style="margin-top:.8rem;color:var(--muted)">Collections shown as placeholders — swap with images or product cards when integrating a catalog.</p>
+      <div class="gallery-grid" role="list">
+        <div class="tile" role="listitem">
+          <div>🌹 Romance</div>
+          <div class="tile-sub">Red & Pink Roses</div>
+        </div>
+        <div class="tile" style="background:linear-gradient(135deg,#f4d4a6,#e8c99f)" role="listitem">
+          <div>🌼 Sunshine</div>
+          <div class="tile-sub">Golden & Yellow</div>
+        </div>
+        <div class="tile" style="background:linear-gradient(135deg,var(--accent-2),#6bb65f)" role="listitem">
+          <div>🌿 Serenity</div>
+          <div class="tile-sub">Green & White</div>
+        </div>
+        <div class="tile" style="background:linear-gradient(135deg,#d8a5d8,#c683c6)" role="listitem">
+          <div>💜 Lavender</div>
+          <div class="tile-sub">Purple Elegance</div>
+        </div>
+      </div>
+      <p style="margin-top:1.5rem;color:var(--muted);text-align:center;font-size:.95rem">🌸 Each collection is freshly prepared daily. Custom arrangements available upon request.</p>
     </section>
 
+    <!-- About Section -->
+    <section class="section alt container" id="about" aria-labelledby="aboutTitle">
+      <div class="section-header">
+        <h2 id="aboutTitle">Our Story</h2>
+        <p class="muted">Passion for florals, commitment to excellence</p>
+      </div>
+      <div style="max-width:800px;margin:0 auto;text-align:center">
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--muted)">
+          Founded in 2018, Laurel &amp; Bloom emerged from a simple dream: to transform ordinary moments into extraordinary memories through the art of florals. 
+          Our master florists hand-select every bloom, ensuring quality, freshness, and beauty in every arrangement.
+        </p>
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--muted)">
+          We believe flowers are nature's poetry—and we're honored to help you express your emotions, celebrate love, and honor special people in your life.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
     <section class="section container" id="contact" aria-labelledby="contactTitle">
-      <h2 id="contactTitle">Contact</h2>
-      <p class="muted">Questions, orders, or event inquiries? Send us a message or book a consultation.</p>
-      <form id="contactForm" class="contact-form" novalidate>
-        <div class="form-row">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" required minlength="2" />
-          <span class="error" id="nameError" aria-live="polite"></span>
+      <div class="contact-section">
+        <div style="text-align:center;margin-bottom:2rem">
+          <h2 id="contactTitle">Get in Touch</h2>
+          <p class="muted">Questions? Want to order? We're here to help!</p>
         </div>
-        <div class="form-row">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" required />
-          <span class="error" id="emailError" aria-live="polite"></span>
-        </div>
-        <div class="form-row">
-          <label for="phone">Phone (optional)</label>
-          <input id="phone" name="phone" type="tel" />
-          <span class="error" id="phoneError" aria-live="polite"></span>
-        </div>
-        <div class="form-row">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" required minlength="5"></textarea>
-          <span class="error" id="messageError" aria-live="polite"></span>
-        </div>
-        <div class="form-actions" style="display:flex;gap:.5rem;align-items:center">
-          <button class="btn primary" type="submit">Send message</button>
-          <button class="btn" type="reset">Reset</button>
-        </div>
-        <div id="formStatus" aria-live="polite" class="muted small" style="margin-top:.6rem"></div>
-      </form>
+        <form id="contactForm" class="contact-form" novalidate>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div class="form-row">
+              <label for="name">Your Name</label>
+              <input id="name" name="name" type="text" placeholder="John Doe" required minlength="2" />
+              <span class="error" id="nameError" aria-live="polite"></span>
+            </div>
+            <div class="form-row">
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              <span class="error" id="emailError" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" />
+            <span class="error" id="phoneError" aria-live="polite"></span>
+          </div>
+          <div class="form-row">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your needs..." required minlength="5"></textarea>
+            <span class="error" id="messageError" aria-live="polite"></span>
+          </div>
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Send Message</button>
+            <button class="btn" type="reset">Clear</button>
+          </div>
+          <div id="formStatus" aria-live="polite" style="margin-top:1rem"></div>
+        </form>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <small>© <span id="year"></span> Laurel &amp; Bloom — Floral Atelier</small>
-      <div class="socials" aria-hidden="false" style="margin-top:.6rem">
-        <a class="muted" href="mailto:hello@laurelandbloom.example">hello@laurelandbloom.example</a>
-        <span class="muted">·</span>
-        <a class="muted" href="tel:+1234567890">+1 (234) 567-890</a>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Laurel &amp; Bloom</h4>
+          <p>Premium handcrafted floral arrangements for every occasion.</p>
+          <p style="font-size:.85rem;margin-top:.8rem">© <span id="year"></span> All rights reserved</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <p><a href="#services">Services</a></p>
+          <p><a href="#collections">Collections</a></p>
+          <p><a href="#contact">Contact</a></p>
+          <p><a href="#about">About Us</a></p>
+        </div>
+        <div class="footer-section">
+          <h4>Connect With Us</h4>
+          <p><a href="mailto:hello@laurelandbloom.com">hello@laurelandbloom.com</a></p>
+          <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+          <div class="socials" style="margin-top:1rem">
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="Facebook">f</a>
+            <a href="#" class="social-link" aria-label="Pinterest">P</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Crafted with 💚 and 💗 | <a href="#" style="color:var(--accent);text-decoration:none">Privacy Policy</a> · <a href="#" style="color:var(--accent);text-decoration:none">Terms of Service</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- Modal / Booking -->
+  <!-- Booking Modal -->
   <div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
     <div class="modal-content" role="document">
       <button class="btn icon-btn modal-close" id="closeModal" aria-label="Close">✕</button>
       <h3 id="modalTitle">Book a Consultation</h3>
-      <p class="muted">Tell us a bit about your event and preferred dates — we'll follow up to confirm details.</p>
+      <p class="muted">Let's create something beautiful together. Tell us about your vision!</p>
 
-      <form id="bookingForm" style="margin-top:1rem" novalidate>
+      <form id="bookingForm" style="margin-top:1.5rem" novalidate>
         <div class="form-row">
-          <label for="bname">Name</label>
-          <input id="bname" name="bname" type="text" required minlength="2" />
+          <label for="bname">Your Name</label>
+          <input id="bname" name="bname" type="text" placeholder="Full name" required minlength="2" />
           <span class="error" id="bnameError" aria-live="polite"></span>
         </div>
         <div class="form-row">
           <label for="bemail">Email</label>
-          <input id="bemail" name="bemail" type="email" required />
+          <input id="bemail" name="bemail" type="email" placeholder="your@email.com" required />
           <span class="error" id="bemailError" aria-live="polite"></span>
+        </div>
+        <div class="form-row">
+          <label for="bevent">Event Type (optional)</label>
+          <input id="bevent" name="bevent" type="text" placeholder="Wedding, Birthday, Anniversary..." />
         </div>
         <div class="form-row">
           <label for="bdate">Preferred Date (optional)</label>
           <input id="bdate" name="bdate" type="date" />
         </div>
         <div class="form-row">
-          <label for="bmessage">Details</label>
-          <textarea id="bmessage" name="bmessage" rows="3" required minlength="5"></textarea>
+          <label for="bmessage">Tell Us About Your Event</label>
+          <textarea id="bmessage" name="bmessage" rows="4" placeholder="Describe your vision..." required minlength="5"></textarea>
           <span class="error" id="bmessageError" aria-live="polite"></span>
         </div>
-        <div style="display:flex;gap:.5rem;align-items:center">
-          <button class="btn primary" id="bookingSubmit" type="submit">Request Consultation</button>
+        <div style="display:flex;gap:.6rem;align-items:center">
+          <button class="btn primary" id="bookingSubmit" type="submit" style="flex:1">Request Consultation</button>
           <button class="btn modal-close" type="button">Cancel</button>
         </div>
-        <div id="bookingStatus" aria-live="polite" class="muted small" style="margin-top:.6rem"></div>
+        <div id="bookingStatus" aria-live="polite" style="margin-top:1rem"></div>
       </form>
     </div>
   </div>
 
   <script>
   /* ============================
-     particles.js (inline) — floral palette
+     Particles.js - Enhanced floral animation
      ============================ */
   (function(){
     const canvas = document.getElementById('heroCanvas');
     if(!canvas) return;
     const ctx = canvas.getContext('2d', { alpha: true });
     let particles = [];
-    const max = Math.min(120, Math.round(window.innerWidth / 10));
+    const max = Math.min(140, Math.round(window.innerWidth / 12));
     let DPR = Math.max(1, window.devicePixelRatio || 1);
 
     function resizeCanvas(){
       DPR = Math.max(1, window.devicePixelRatio || 1);
       canvas.width = Math.floor(window.innerWidth * DPR);
-      canvas.height = Math.floor((window.innerHeight * 0.6) * DPR);
+      canvas.height = Math.floor((window.innerHeight * 0.65) * DPR);
       canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = (window.innerHeight * 0.6) + 'px';
+      canvas.style.height = (window.innerHeight * 0.65) + 'px';
       ctx.setTransform(DPR,0,0,DPR,0,0);
     }
     window.addEventListener('resize', resizeCanvas, { passive:true });
@@ -309,12 +524,12 @@
 
     function rand(a,b){ return Math.random()*(b-a)+a }
 
-    // pick floral-ish hues (pink, peach, green, soft yellow)
     function pickHue(){
       const palettes = [
-        [320, 350], // pinks
-        [18, 36],   // peach/yellow
-        [90, 135]   // greens
+        [320, 350], // pinks/roses
+        [10, 40],   // peach/coral
+        [80, 140],  // greens
+        [50, 70]    // yellow/gold
       ];
       const p = palettes[Math.floor(Math.random()*palettes.length)];
       return Math.floor(rand(p[0], p[1]));
@@ -325,14 +540,16 @@
       reset(){
         this.x = rand(0, window.innerWidth);
         this.y = rand(0, canvas.height / DPR);
-        this.r = rand(0.8, 3.2);
-        this.vx = rand(-0.4, 0.4);
-        this.vy = rand(-0.25, 0.25);
+        this.r = rand(1, 4);
+        this.vx = rand(-0.3, 0.3);
+        this.vy = rand(-0.15, 0.15);
         this.h = pickHue();
-        this.alpha = rand(0.5,0.95);
+        this.alpha = rand(0.4, 0.8);
+        this.wobble = rand(0, Math.PI * 2);
       }
       step(){
-        this.x += this.vx;
+        this.wobble += 0.01;
+        this.x += this.vx + Math.sin(this.wobble) * 0.15;
         this.y += this.vy;
         if(this.x < -30) this.x = window.innerWidth + 30;
         if(this.x > window.innerWidth + 30) this.x = -30;
@@ -341,7 +558,7 @@
       }
       draw(ctx){
         ctx.beginPath();
-        ctx.fillStyle = `hsla(${this.h},70%,65%,${this.alpha})`;
+        ctx.fillStyle = `hsla(${this.h},75%,60%,${this.alpha})`;
         ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
         ctx.fill();
       }
@@ -352,20 +569,14 @@
 
     function frame(){
       ctx.clearRect(0,0,canvas.width,canvas.height);
-      // subtle gradient overlay
-      const lg = ctx.createLinearGradient(0,0,canvas.width/DPR,canvas.height/DPR);
-      lg.addColorStop(0, 'rgba(255,255,255,0.02)');
-      lg.addColorStop(1, 'rgba(0,0,0,0.03)');
-      ctx.fillStyle = lg;
-      ctx.fillRect(0,0,canvas.width/DPR,canvas.height/DPR);
-
+      
       for(const p of particles){
         p.step();
         p.draw(ctx);
       }
 
-      // short-range linking (very subtle)
-      const maxDist = 110;
+      // Short-range linking
+      const maxDist = 130;
       for(let i=0;i<particles.length;i++){
         for(let j=i+1;j<particles.length;j++){
           const a = particles[i], b = particles[j];
@@ -374,8 +585,8 @@
           if(d2 < maxDist * maxDist){
             const t = 1 - (Math.sqrt(d2) / maxDist);
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(201,108,163,${0.03 + 0.12*t})`; // soft pink line
-            ctx.lineWidth = 1 * t;
+            ctx.strokeStyle = `rgba(212,103,127,${0.02 + 0.1*t})`;
+            ctx.lineWidth = 0.8 * t;
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
             ctx.stroke();
@@ -389,7 +600,7 @@
   })();
 
   /* ============================
-     main.js (inline) — UI behavior
+     Main UI behavior
      ============================ */
   (function(){
     document.addEventListener('DOMContentLoaded', () => {
@@ -401,16 +612,14 @@
       const closeModalButtons = document.querySelectorAll('.modal-close');
       const bookingForm = document.getElementById('bookingForm');
       const bookingStatus = document.getElementById('bookingStatus');
-      const ctaCollections = document.getElementById('ctaCollections');
       const yearEl = document.getElementById('year');
 
-      // set year
       if(yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // Theme: persist in localStorage
+      // Theme persistence
       const root = document.documentElement;
-      const saved = localStorage.getItem('site-theme');
-      if(saved) root.setAttribute('data-theme', saved);
+      const saved = localStorage.getItem('site-theme') || 'light';
+      root.setAttribute('data-theme', saved);
 
       themeToggle && themeToggle.addEventListener('click', () => {
         const cur = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
@@ -425,7 +634,7 @@
         mobileMenu.setAttribute('aria-hidden', open ? 'true' : 'false');
       });
 
-      // Smooth scroll for internal links
+      // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', (e) => {
           const href = a.getAttribute('href');
@@ -435,24 +644,21 @@
           if(target){
             e.preventDefault();
             target.scrollIntoView({behavior:'smooth', block:'start'});
-            // close mobile menu
             if(mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
           }
         });
       });
 
-      // Modal: accessible open/close/escape and focus management
+      // Modal management
       function openDialog(){
         modal && modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        // focus first focusable element inside modal
         const focusable = modal && modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if(focusable) focusable.focus();
+        if(focusable) setTimeout(() => focusable.focus(), 100);
       }
       function closeDialog(){
         modal && modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-        // return focus to opener
         openModal && openModal.focus();
       }
       openModal && openModal.addEventListener('click', openDialog);
@@ -461,25 +667,23 @@
         if(e.key === 'Escape' && modal && modal.getAttribute('aria-hidden') === 'false') closeDialog();
       });
 
-      // Service buttons wiring (order/plan -> open contact or modal)
+      // Service buttons
       document.querySelectorAll('[data-focus-target]').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const t = btn.getAttribute('data-focus-target');
           if(t === 'contact'){
             const contact = document.getElementById('contact');
-            if(contact) contact.scrollIntoView({behavior:'smooth', block:'start'});
-            // focus name input after short delay
-            setTimeout(()=> document.getElementById('name')?.focus(), 600);
+            if(contact) {
+              contact.scrollIntoView({behavior:'smooth', block:'start'});
+              setTimeout(()=> document.getElementById('name')?.focus(), 600);
+            }
           } else {
             openDialog();
           }
         });
       });
 
-      // CTA to collections uses native link — nothing extra needed
-      ctaCollections && ctaCollections.addEventListener('click', (e)=>{});
-
-      /* Contact form: client-side validation (demo) */
+      /* Contact form */
       const form = document.getElementById('contactForm');
       if(form){
         const status = document.getElementById('formStatus');
@@ -496,21 +700,22 @@
           };
           document.getElementById('nameError').textContent = '';
           document.getElementById('emailError').textContent = '';
-          document.getElementById('phoneError').textContent = '';
           document.getElementById('messageError').textContent = '';
-          if(name.length < 2) setErr('nameError', 'Please enter your name (2+ characters).');
-          if(!/^\S+@\S+\.\S+$/.test(email)) setErr('emailError', 'Please enter a valid email.');
-          if(message.length < 5) setErr('messageError', 'Message is too short.');
+          if(name.length < 2) setErr('nameError', '✗ Name must be at least 2 characters');
+          if(!/^\S+@\S+\.\S+$/.test(email)) setErr('emailError', '✗ Please enter a valid email');
+          if(message.length < 5) setErr('messageError', '✗ Message must be at least 5 characters');
           if(!ok) return;
           status.textContent = 'Sending…';
+          status.className = '';
           setTimeout(() => {
-            status.textContent = 'Thanks — we received your message. We will reply shortly.';
+            status.textContent = '✓ Thank you! We received your message and will reply within 24 hours.';
+            status.classList.add('form-status', 'success');
             form.reset();
           }, 900);
         });
       }
 
-      /* Booking form inside modal */
+      /* Booking form */
       if(bookingForm){
         bookingForm.addEventListener('submit', (e) => {
           e.preventDefault();
@@ -527,21 +732,22 @@
           document.getElementById('bnameError').textContent = '';
           document.getElementById('bemailError').textContent = '';
           document.getElementById('bmessageError').textContent = '';
-          if(name.length < 2) setErr('bnameError', 'Please enter your name (2+ characters).');
-          if(!/^\S+@\S+\.\S+$/.test(email)) setErr('bemailError', 'Please enter a valid email.');
-          if(message.length < 5) setErr('bmessageError', 'Please provide some details.');
+          if(name.length < 2) setErr('bnameError', '✗ Name required');
+          if(!/^\S+@\S+\.\S+$/.test(email)) setErr('bemailError', '✗ Valid email required');
+          if(message.length < 5) setErr('bmessageError', '✗ Please tell us more');
           if(!ok) return;
           bookingStatus.textContent = 'Requesting…';
+          bookingStatus.className = '';
           setTimeout(() => {
-            bookingStatus.textContent = 'Thanks — your consultation request has been sent. We will contact you soon.';
+            bookingStatus.textContent = '✓ Your consultation request is confirmed! We\'ll contact you within 24 hours.';
+            bookingStatus.classList.add('form-status', 'success');
             bookingForm.reset();
-            // close after a short pause
-            setTimeout(closeDialog, 900);
+            setTimeout(closeDialog, 1200);
           }, 900);
         });
       }
 
-      // Respect prefers-reduced-motion
+      // Accessibility
       const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
       if(motion.matches){
         document.documentElement.classList.add('reduce-motion');
