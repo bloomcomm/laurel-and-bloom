@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gold Oval Link Bracelet | Laurel & Gloom</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff;
+            color: #222;
+        }
+
+        /* NAVBAR */
+        header {
+            width: 100%;
+            padding: 22px 7%;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+        }
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            letter-spacing: 2px;
+            color: #222;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #b18a3b;
+        }
+
+        /* PRODUCT SECTION */
+        .product-container {
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 0 30px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        /* IMAGE */
+        .product-image {
+            width: 100%;
+            background: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .product-image img:hover {
+            transform: scale(1.03);
+        }
+
+        /* PRODUCT INFO */
+        .category {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-family: Georgia, serif;
+            font-size: 42px;
+            font-weight: normal;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: #a27b32;
+        }
+
+        .description {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* DETAILS */
+        .details {
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            font-size: 14px;
+        }
+
+        .detail span:first-child {
+            color: #888;
+        }
+
+        .detail span:last-child {
+            color: #333;
+        }
+
+        /* BUTTON */
+        .order-btn {
+            width: 100%;
+            padding: 17px;
+            border: none;
+            background: #222;
+            color: white;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .order-btn:hover {
+            background: #a27b32;
+        }
+
+        /* NOTE */
+        .order-note {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: 15px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid #eee;
+            text-align: center;
+            padding: 30px;
+            margin-top: 80px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+
+            header {
+                padding: 18px 5%;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin: 40px auto;
+                padding: 0 20px;
+            }
+
+            .product-title {
+                font-size: 32px;
+            }
+
+            .product-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="logo">LAUREL & GLOOM</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">Collections</a>
+            <a href="#">Shop</a>
+            <a href="#">About</a>
+        </nav>
+    </header>
+
+
+    <!-- PRODUCT -->
+    <main class="product-container">
+
+        <!-- PRODUCT IMAGE -->
+        <div class="product-image">
+            <img src="laurel1.jpeg" alt="Gold Oval Link Bracelet">
+        </div>
+
+
+        <!-- PRODUCT INFORMATION -->
+        <div class="product-info">
+
+            <div class="category">
+                New Collection
+            </div>
+
+            <h1 class="product-title">
+                Gold Oval Link Bracelet
+            </h1>
+
+            <div class="price">
+                ₹699
+            </div>
+
+            <p class="description">
+                A timeless gold-toned bracelet featuring elegant oval links
+                designed to add a subtle luxury to any look.
+            </p>
+
+
+            <!-- DETAILS -->
+            <div class="details">
+
+                <div class="detail">
+                    <span>Material</span>
+                    <span>Gold Finish</span>
+                </div>
+
+                <div class="detail">
+                    <span>Style</span>
+                    <span>Minimal / Elegant</span>
+                </div>
+
+                <div class="detail">
+                    <span>Availability</span>
+                    <span>In Stock</span>
+                </div>
+
+            </div>
+
+
+            <!-- ORDER BUTTON -->
+            <button class="order-btn" onclick="orderProduct()">
+                ORDER NOW
+            </button>
+
+            <p class="order-note">
+                Prepaid orders only • No returns • No COD
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Laurel & Gloom. All rights reserved.
+    </footer>
+
+
+    <script>
+        function orderProduct() {
+            alert("To order this product, send us a DM on Instagram.");
+        }
+    </script>
+
+</body>
+</html>
