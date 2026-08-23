@@ -215,6 +215,7 @@
       align-items: center;
       justify-content: center;
       animation: float 3s ease-in-out infinite;
+      font-size: 15rem;
     }
 
     .hero-image img {
@@ -621,8 +622,8 @@
         min-height: auto;
       }
 
-      .hero-image img {
-        max-height: 300px;
+      .hero-image {
+        font-size: 8rem;
       }
 
       .section {
@@ -659,6 +660,7 @@
       </a>
       <nav class="nav">
         <li><a href="#products">Products</a></li>
+        <li><a href="#accessories">Accessories</a></li>
         <li><a href="#features">Why Us</a></li>
         <li><a href="#contact">Contact</a></li>
       </nav>
@@ -680,7 +682,7 @@
       </div>
     </div>
     <div class="hero-image">
-      <img src="laurel2.jpeg" alt="Gold Bracelet" />
+      🌹
     </div>
   </section>
 
@@ -761,6 +763,27 @@
         <div class="feature-icon">📦</div>
         <div class="feature-title">Custom Wraps</div>
         <p class="feature-desc">Personalized packaging options</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accessories Section -->
+  <section class="section" id="accessories">
+    <div class="section-header">
+      <h2>Accessories Collection</h2>
+      <p>Premium accessories to complement your gifts</p>
+    </div>
+    <div class="products-grid">
+      <!-- Accessory 1 -->
+      <div class="product-card">
+        <div class="product-image">💍</div>
+        <div class="product-info">
+          <div class="product-category">Accessories</div>
+          <div class="product-name">Gold Bracelet</div>
+          <p class="product-desc">Elegant gold bracelet to add sparkle to your gift.</p>
+          <div class="product-price">From Rs 500</div>
+          <button class="btn btn-primary" onclick="openOrderModal('Gold Bracelet')">Order</button>
+        </div>
       </div>
     </div>
   </section>
