@@ -892,22 +892,21 @@
     orderBtn.addEventListener('click', () => openWhatsaap('i would like to place an order'));
     heroBtn.addEventListener('click', () => openWhatsaap('i would like to place an order'));
 
-    function openOrderModal(productName) {
-      document.getElementById('modalProductName').textContent = productName;
-      orderForm.reset();
-      document.getElementById('formStatus').classList.remove('show', 'success', 'error');
-      orderModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+   function openWhatsApp(productName) {
+  const phoneNumber = "7892731343";
 
-    function closeOrderModal() {
-      orderModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+  const message = `Hi! I would like to order:
 
-    orderModal.addEventListener('click', (e) => {
-      if (e.target === orderModal) closeOrderModal();
-    });
+Product: ${productName}
+
+Please let me know the payment details.`;
+
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappURL, "_blank");
+}
+
+  
 
     // Form Validation
     function handleOrderSubmit(e) {
