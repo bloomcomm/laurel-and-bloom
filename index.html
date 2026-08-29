@@ -705,7 +705,7 @@
           <div class="product-name">Chocolatte Bouquet</div>
           <p class="product-desc">Decadent chocolate-themed bouquet with premium candies.</p>
           <div class="product-price">From Rs 200</div>
-          <button class="btn btn-primary" onclick="openWhatsaap('Chocolatte Bouquet')">Order</button>
+          <button class="btn btn-primary" onclick="openWhatsApp('Chocolatte Bouquet')">Order</button>
         </div>
       </div>
 
@@ -718,7 +718,7 @@
           <div class="product-name">Kitkat Bouquet</div>
           <p class="product-desc">A playful bouquet featuring KitKat bars and fresh blooms.</p>
           <div class="product-price">From Rs 200</div>
-          <button class="btn btn-primary" onclick="openWhatsaap('Kitkat Bouquet')">Order</button>
+          <button class="btn btn-primary" onclick="openWhatsApp('Kitkat Bouquet')">Order</button>
         </div>
       </div>
 
@@ -731,7 +731,7 @@
           <div class="product-name">Premium Gift hampers</div>
           <p class="product-desc">Luxury wrapping with ribbons and bows.</p>
           <div class="product-price">From Rs 650</div>
-          <button class="btn btn-primary" onclick="openWhatsaap('Premium Gift Wrap')">Order</button>
+          <button class="btn btn-primary" onclick="openWhatsApp('Premium Gift Wrap')">Order</button>
         </div>
       </div>
 
@@ -744,7 +744,7 @@
           <div class="product-name">Lavender bouquette</div>
           <p class="product-desc">Luxury wrapping with ribbons and bows.</p>
           <div class="product-price">From Rs 1200</div>
-          <button class="btn btn-primary" onclick="openWhatsaap('lavender bouquette')">Order</button>
+          <button class="btn btn-primary" onclick="openWhatsApp('lavender bouquette')">Order</button>
         </div>
       </div>
 
@@ -757,7 +757,7 @@
           <div class="product-name">Hotwheels bouquet</div>
           <p class="product-desc">Complete gift package with accessories.</p>
           <div class="product-price">From Rs 1500</div>
-          <button class="btn btn-primary" onclick="openWhatsaap('Bouquet + Wrap Combo')">Order</button>
+          <button class="btn btn-primary" onclick="openWhatsApp('Bouquet + Wrap Combo')">Order</button>
         </div>
       </div>
 
@@ -770,7 +770,7 @@
           <div class="product-name">crochet keychain</div>
           <p class="product-desc">beautiful handmade crochet keychain.</p>
           <div class="product-price">From Rs 550</div>
-          <button class="btn btn-primary" onclick="openWhatsaap('keychain')">Order</button>
+          <button class="btn btn-primary" onclick="openWhatsApp('keychain')">Order</button>
         </div>
       </div>
     </div>
@@ -813,7 +813,7 @@
       <a href="mailto:hello@laurelandbloom.com">📧 hello@laurelandbloom.com</a>
      
     </div>
-    <button class="btn btn-primary" onclick="openWhatsaap('Custom Order')">Custom Order</button>
+    <button class="btn btn-primary" onclick="openWhatsApp('Custom Order')">Custom Order</button>
   </section>
 
   <!-- Footer -->
@@ -889,8 +889,8 @@
     const orderBtn = document.getElementById('orderBtn');
     const heroBtn = document.getElementById('heroBtn');
 
-    orderBtn.addEventListener('click', () => openWhatsaap('i would like to place an order'));
-    heroBtn.addEventListener('click', () => openWhatsaap('i would like to place an order'));
+    orderBtn.addEventListener('click', () => openWhatsApp('i would like to place an order'));
+    heroBtn.addEventListener('click', () => openWhatsApp('i would like to place an order'));
 
    function openWhatsApp(productName) {
   const phoneNumber = "7892731343";
