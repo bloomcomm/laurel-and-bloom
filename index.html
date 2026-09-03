@@ -44,6 +44,84 @@
       color: var(--text-light);
     }
 
+    /* Promotion Banner */
+    .promo-banner {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, #c41e3a, #d4677f);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-align: center;
+      z-index: 101;
+      box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+      font-weight: 600;
+      font-size: 1rem;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .promo-banner-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .promo-text {
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .promo-highlight {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 5px;
+      font-weight: 700;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .promo-close {
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .promo-close:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .promo-banner.hidden {
+      display: none;
+    }
+
     /* Falling Snow Animation */
     .snowflake {
       position: fixed;
@@ -708,10 +786,40 @@
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
       }
+
+      .promo-banner {
+        padding: 0.6rem 1rem;
+      }
+
+      .promo-text {
+        font-size: 0.9rem;
+      }
+
+      .promo-highlight {
+        padding: 0.2rem 0.6rem;
+        font-size: 0.9rem;
+      }
+
+      .promo-close {
+        width: 24px;
+        height: 24px;
+        font-size: 1rem;
+        right: 1rem;
+      }
     }
   </style>
 </head>
 <body data-theme="light">
+  <!-- Promotion Banner -->
+  <div class="promo-banner" id="promoBanner">
+    <div class="promo-banner-content">
+      <span class="promo-text">
+        🎄 <span class="promo-highlight">CHRISTMAS SPECIAL</span> — Get <span class="promo-highlight">20% OFF</span> on all products! 🎉
+      </span>
+    </div>
+    <button class="promo-close" id="promoClose" aria-label="Close promotion">✕</button>
+  </div>
+
   <!-- Header -->
   <header>
     <div class="header-content">
@@ -938,6 +1046,20 @@
       // Replace with your EmailJS Public Key
       emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
     })();
+
+    // Promotion Banner Close
+    const promoBanner = document.getElementById('promoBanner');
+    const promoClose = document.getElementById('promoClose');
+
+    promoClose.addEventListener('click', () => {
+      promoBanner.classList.add('hidden');
+      localStorage.setItem('promoBannerClosed', 'true');
+    });
+
+    // Check if banner was previously closed
+    if (localStorage.getItem('promoBannerClosed') === 'true') {
+      promoBanner.classList.add('hidden');
+    }
 
     // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
