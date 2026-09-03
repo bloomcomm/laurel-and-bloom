@@ -52,28 +52,15 @@
       user-select: none;
       pointer-events: none;
       font-size: 1.5rem;
-      opacity: 0.8;
+      opacity: 0.9;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
     @keyframes fall {
       to {
-        transform: translateY(100vh) translateX(0);
+        transform: translateY(100vh);
         opacity: 0;
-      }
-    }
-
-    @keyframes sway {
-      0%, 100% {
-        transform: translateX(0);
-      }
-      25% {
-        transform: translateX(100px);
-      }
-      50% {
-        transform: translateX(-100px);
-      }
-      75% {
-        transform: translateX(50px);
       }
     }
 
@@ -979,11 +966,11 @@
       snowflake.textContent = '❄';
       
       const randomLeft = Math.random() * window.innerWidth;
-      const randomDuration = 8 + Math.random() * 4;
-      const randomDelay = Math.random() * 2;
+      const randomDuration = 10 + Math.random() * 5;
+      const randomDelay = Math.random() * 0.5;
       
       snowflake.style.left = randomLeft + 'px';
-      snowflake.style.animation = `fall ${randomDuration}s linear ${randomDelay}s infinite, sway ${randomDuration * 0.5}s ease-in-out ${randomDelay}s infinite`;
+      snowflake.style.animation = `fall ${randomDuration}s linear ${randomDelay}s forwards`;
       
       document.body.appendChild(snowflake);
       
@@ -993,11 +980,11 @@
     }
 
     // Create snowflakes continuously
-    setInterval(createSnowflake, 300);
+    setInterval(createSnowflake, 200);
 
     // Create initial batch of snowflakes
-    for (let i = 0; i < 5; i++) {
-      setTimeout(createSnowflake, i * 100);
+    for (let i = 0; i < 8; i++) {
+      setTimeout(createSnowflake, i * 50);
     }
 
     // Modal Functions
