@@ -7,7 +7,6 @@
   <meta name="description" content="Beautiful handcrafted flower bouquets and luxury gift wraps. Perfect for every occasion. Order online for same-day delivery.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/email-js@3.10.0/dist/email.css">
   <style>
     :root {
       --primary: #d4677f;
@@ -19,6 +18,9 @@
       --text-light: #f0f8ff;
       --border: #e8dfd8;
       --success: #7dc876;
+      --card: #ffffff;
+      --muted: #666;
+      --soft: #f5efe9;
     }
 
     * {
@@ -30,6 +32,7 @@
     html, body {
       height: 100%;
       font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -42,9 +45,15 @@
     body[data-theme="dark"] {
       background: linear-gradient(135deg, var(--dark), #051a2f);
       color: var(--text-light);
+      --card: rgba(255,255,255,0.05);
+      --muted: rgba(240,248,255,0.7);
+      --soft: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text-dark: var(--text-light);
     }
 
-    /* Promotion Banner */
+    a { color: inherit; }
+
     .promo-banner {
       position: sticky;
       top: 0;
@@ -57,19 +66,10 @@
       font-weight: 600;
       font-size: 1rem;
       animation: slideDown 0.5s ease-out;
-      border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 3px solid rgba(255,255,255,0.2);
     }
 
-    @keyframes slideDown {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
+    .promo-banner.hidden { display: none; }
 
     .promo-banner-content {
       max-width: 1200px;
@@ -85,7 +85,6 @@
     .promo-text {
       font-size: 1.15rem;
       letter-spacing: 0.5px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
       display: flex;
       align-items: center;
       gap: 0.8rem;
@@ -93,51 +92,22 @@
       justify-content: center;
     }
 
-    .promo-emoji {
-      font-size: 1.3rem;
-      animation: wiggle 2s infinite;
-    }
-
-    @keyframes wiggle {
-      0%, 100% { transform: rotate(-5deg); }
-      50% { transform: rotate(5deg); }
-    }
-
-    .promo-highlight {
-      background: rgba(255, 255, 255, 0.25);
+    .promo-emoji { font-size: 1.3rem; animation: wiggle 2s infinite; }
+    .promo-highlight, .promo-badge {
+      background: rgba(255,255,255,0.25);
       padding: 0.4rem 1rem;
       border-radius: 8px;
       font-weight: 700;
       display: inline-block;
       white-space: nowrap;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-
-    .promo-highlight:hover {
-      background: rgba(255, 255, 255, 0.35);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .promo-badge {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 0.4rem 1rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      display: inline-block;
-      white-space: nowrap;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
+    .promo-badge { background: rgba(255,255,255,0.2); }
 
     .promo-close {
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
       color: white;
       font-size: 1.3rem;
       cursor: pointer;
@@ -152,59 +122,36 @@
       right: 1.5rem;
       top: 50%;
       transform: translateY(-50%);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
       font-weight: 700;
     }
 
     .promo-close:hover {
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(255,255,255,0.4);
       transform: translateY(-50%) scale(1.15);
-      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
     }
 
-    .promo-banner.hidden {
-      display: none;
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    body[data-theme="dark"] .promo-banner {
-      background: linear-gradient(135deg, #a85a6d 0%, #9d5166 50%, #7ac574 100%);
-      box-shadow: 0 8px 25px rgba(168, 90, 109, 0.3);
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
     }
 
-    /* Falling Snow Animation */
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      z-index: 50;
-      user-select: none;
-      pointer-events: none;
-      font-size: 1.5rem;
-      opacity: 0.9;
-      color: #ffffff;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
-    }
-
-    /* Header */
     header {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255,255,255,0.95);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     body[data-theme="dark"] header {
-      background: rgba(10, 20, 40, 0.9);
-      border-bottom-color: rgba(255, 255, 255, 0.08);
+      background: rgba(10,20,40,0.9);
+      border-bottom-color: rgba(255,255,255,0.08);
     }
 
     .header-content {
@@ -237,18 +184,11 @@
       text-decoration: none;
       color: var(--text-dark);
       font-weight: 500;
-      transition: color 0.3s;
       position: relative;
+      transition: color 0.3s;
     }
 
-    body[data-theme="dark"] .nav a {
-      color: var(--text-light);
-    }
-
-    .nav a:hover {
-      color: var(--primary);
-    }
-
+    .nav a:hover { color: var(--primary); }
     .nav a::after {
       content: '';
       position: absolute;
@@ -259,10 +199,7 @@
       background: var(--primary);
       transition: width 0.3s;
     }
-
-    .nav a:hover::after {
-      width: 100%;
-    }
+    .nav a:hover::after { width: 100%; }
 
     .header-actions {
       display: flex;
@@ -280,12 +217,12 @@
       font-size: 0.95rem;
       text-decoration: none;
       display: inline-block;
+      background: transparent;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), #c0556e);
       color: white;
-      border-color: transparent;
     }
 
     .btn-primary:hover {
@@ -294,9 +231,9 @@
     }
 
     .btn-secondary {
-      background: transparent;
       color: var(--primary);
       border-color: var(--primary);
+      background: transparent;
     }
 
     .btn-secondary:hover {
@@ -312,11 +249,8 @@
       transition: transform 0.3s;
     }
 
-    .theme-toggle:hover {
-      transform: rotate(20deg);
-    }
+    .theme-toggle:hover { transform: rotate(20deg); }
 
-    /* Hero */
     .hero {
       max-width: 1200px;
       margin: 0 auto;
@@ -336,19 +270,11 @@
       color: var(--text-dark);
     }
 
-    body[data-theme="dark"] .hero-content h1 {
-      color: var(--text-light);
-    }
-
     .hero-content p {
       font-size: 1.1rem;
-      color: #666;
+      color: var(--muted);
       margin-bottom: 2rem;
       line-height: 1.8;
-    }
-
-    body[data-theme="dark"] .hero-content p {
-      color: rgba(240, 248, 255, 0.7);
     }
 
     .hero-ctas {
@@ -366,20 +292,11 @@
       font-size: 15rem;
     }
 
-    .hero-image img {
-      max-width: 100%;
-      max-height: 500px;
-      object-fit: contain;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    }
-
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
     }
 
-    /* Cards Section */
     .section {
       padding: 4rem 1.5rem;
       max-width: 1200px;
@@ -398,20 +315,11 @@
       color: var(--text-dark);
     }
 
-    body[data-theme="dark"] .section-header h2 {
-      color: var(--text-light);
-    }
-
     .section-header p {
       color: #999;
       font-size: 1.05rem;
     }
 
-    body[data-theme="dark"] .section-header p {
-      color: rgba(240, 248, 255, 0.6);
-    }
-
-    /* Products Grid */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -420,17 +328,12 @@
     }
 
     .product-card {
-      background: white;
+      background: var(--card);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
       transition: all 0.3s;
-      cursor: pointer;
-    }
-
-    body[data-theme="dark"] .product-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
     }
 
     .product-card:hover {
@@ -438,20 +341,13 @@
       box-shadow: 0 12px 30px rgba(212, 103, 127, 0.2);
     }
 
-   .product-image {
-  width: 100%;
-  height: 300px;
-  background: linear-gradient(135deg, #fef5f0, #f8e8df);
-  display: block;
-  overflow: hidden;
-  object-fit: cover;
-  object-position: center;
-  padding: 1px;
-}
-    }
-
-    body[data-theme="dark"] .product-image {
-      background: linear-gradient(135deg, rgba(212, 103, 127, 0.1), rgba(141, 216, 149, 0.1));
+    .product-image {
+      width: 100%;
+      height: 300px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      background: linear-gradient(135deg, #fef5f0, #f8e8df);
     }
 
     .product-info {
@@ -473,19 +369,11 @@
       color: var(--text-dark);
     }
 
-    body[data-theme="dark"] .product-name {
-      color: var(--text-light);
-    }
-
     .product-desc {
       font-size: 0.95rem;
       color: #999;
       margin-bottom: 1rem;
       line-height: 1.6;
-    }
-
-    body[data-theme="dark"] .product-desc {
-      color: rgba(240, 248, 255, 0.6);
     }
 
     .product-price {
@@ -494,53 +382,68 @@
       color: var(--primary);
       margin-bottom: 1rem;
     }
-   .stock-status {
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
 
-.in-stock {
-  color: #4caf50;
-}
+    .stock-status {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
 
-.out-of-stock {
-  color: #e53935;
-}
+    .in-stock { color: #4caf50; }
+    .out-of-stock { color: #e53935; }
 
-/* Offer pricing */
-.old-price {
-  text-decoration: line-through;
-  color: #999;
-  font-size: 1rem;
-  margin-right: 8px;
-  font-weight: 500;
-}
+    .old-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 1rem;
+      margin-right: 8px;
+      font-weight: 500;
+    }
 
-.offer-price {
-  color: var(--primary);
-  font-size: 1.3rem;
-  font-weight: 700;
-}
+    .offer-price {
+      color: var(--primary);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
 
-.offer-badge {
-  display: inline-block;
-  background: #7dc876;
-  color: white;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 4px 7px;
-  border-radius: 5px;
-  margin-left: 8px;
-  vertical-align: middle;
-}
+    .offer-badge {
+      display: inline-block;
+      background: #7dc876;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 7px;
+      border-radius: 5px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0.5rem 0 1rem;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: #fff1d6;
+      color: #a86400;
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      font-weight: 700;
+    }
 
     .product-card .btn {
       width: 100%;
       text-align: center;
     }
 
-    /* Features */
     .features {
       background: linear-gradient(135deg, #fef5f0, #fff9f5);
       padding: 3rem;
@@ -552,7 +455,7 @@
     }
 
     body[data-theme="dark"] .features {
-      background: linear-gradient(135deg, rgba(212, 103, 127, 0.05), rgba(141, 216, 149, 0.05));
+      background: linear-gradient(135deg, rgba(212,103,127,0.05), rgba(141,216,149,0.05));
     }
 
     .feature-item {
@@ -570,20 +473,197 @@
       color: var(--text-dark);
     }
 
-    body[data-theme="dark"] .feature-title {
-      color: var(--text-light);
-    }
-
     .feature-desc {
       color: #999;
       font-size: 0.95rem;
     }
 
-    body[data-theme="dark"] .feature-desc {
-      color: rgba(240, 248, 255, 0.6);
+    .reviews-wrap {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-top: 2rem;
     }
 
-    /* Contact Section */
+    .reviews-summary {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .summary-score {
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .score-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+
+    .review-stars {
+      letter-spacing: 0.12rem;
+      color: #ffb703;
+      font-size: 1.3rem;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    }
+
+    .review-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .review-product {
+      font-weight: 700;
+      color: var(--text-dark);
+      font-size: 1rem;
+    }
+
+    .review-avg {
+      color: var(--primary);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .mini-stars {
+      color: #ffb703;
+      font-size: 0.95rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .review-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .review-item {
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .review-item:first-child { border-top: none; padding-top: 0; }
+
+    .review-author-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0.25rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .review-text {
+      color: var(--text-dark);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .review-form-panel {
+      margin-top: 2.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .review-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: white;
+      color: var(--text-dark);
+    }
+
+    body[data-theme="dark"] .form-group input,
+    body[data-theme="dark"] .form-group textarea,
+    body[data-theme="dark"] .form-group select {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-light);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    textarea { min-height: 110px; resize: vertical; }
+
+    .star-rating {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      font-size: 1.8rem;
+      user-select: none;
+      color: #d0d0d0;
+      cursor: pointer;
+      margin-top: 0.2rem;
+    }
+
+    .star-rating .star {
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .star-rating .star.active {
+      color: #ffb703;
+    }
+
+    .star-rating .star:hover,
+    .star-rating .star:hover ~ .star { color: #ffb703; }
+
+    .rating-selected {
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-height: 1.25rem;
+    }
+
+    .submit-review {
+      grid-column: 1 / -1;
+      margin-top: 0.5rem;
+    }
+
     .contact-section {
       background: var(--text-dark);
       color: white;
@@ -592,11 +672,6 @@
       text-align: center;
       margin: 4rem auto;
       max-width: 600px;
-    }
-
-    body[data-theme="dark"] .contact-section {
-      background: rgba(10, 20, 40, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .contact-section h2 {
@@ -621,14 +696,8 @@
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
-      transition: opacity 0.3s;
     }
 
-    .contact-info a:hover {
-      opacity: 0.8;
-    }
-
-    /* Footer */
     footer {
       background: #1a1a1a;
       color: #999;
@@ -637,173 +706,15 @@
       border-top: 1px solid #333;
     }
 
-    body[data-theme="dark"] footer {
-      background: rgba(0, 0, 0, 0.3);
-    }
-
     footer a {
       color: var(--primary);
       text-decoration: none;
     }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
+    footer a:hover { text-decoration: underline; }
 
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(4px);
-    }
-
-    .modal.active {
-      display: flex;
-      animation: fadeIn 0.3s;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .modal-content {
-      background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      max-width: 500px;
-      width: 90%;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      animation: slideUp 0.3s;
-    }
-
-    body[data-theme="dark"] .modal-content {
-      background: rgba(10, 20, 40, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #999;
-    }
-
-    .modal-close:hover {
-      color: var(--text-dark);
-    }
-
-    body[data-theme="dark"] .modal-close:hover {
-      color: var(--text-light);
-    }
-
-    .modal h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text-dark);
-    }
-
-    body[data-theme="dark"] .modal h3 {
-      color: var(--text-light);
-    }
-
-    /* Form */
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    body[data-theme="dark"] .form-group label {
-      color: var(--text-light);
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-      background: white;
-      color: var(--text-dark);
-    }
-
-    body[data-theme="dark"] .form-group input,
-    body[data-theme="dark"] .form-group textarea {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.08);
-      color: var(--text-light);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(212, 103, 127, 0.1);
-    }
-
-    .form-error {
-      color: #ff6b6b;
-      font-size: 0.85rem;
-      margin-top: 0.3rem;
-      display: none;
-    }
-
-    .form-error.show {
-      display: block;
-    }
-
-    .form-status {
-      padding: 1rem;
-      border-radius: 6px;
-      margin-top: 1rem;
-      text-align: center;
-      display: none;
-      font-weight: 600;
-    }
-
-    .form-status.show {
-      display: block;
-    }
-
-    .form-status.success {
-      background: rgba(125, 200, 118, 0.1);
-      color: var(--success);
-    }
-
-    .form-status.error {
-      background: rgba(255, 107, 107, 0.1);
-      color: #ff6b6b;
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .nav {
-        display: none;
-      }
+      .nav { display: none; }
 
       .hero {
         grid-template-columns: 1fr;
@@ -811,66 +722,29 @@
         min-height: auto;
       }
 
-      .hero-image {
-        font-size: 8rem;
-      }
+      .hero-image { font-size: 8rem; }
 
-      .section {
-        padding: 2rem 1.5rem;
-      }
-
-      .section-header h2 {
-        font-size: 1.8rem;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .header-actions {
-        gap: 0.5rem;
-      }
-
-      .btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-      }
-
-      .promo-banner {
-        padding: 0.8rem 1rem;
-      }
-
-      .promo-text {
-        font-size: 0.95rem;
-        gap: 0.5rem;
-      }
-
-      .promo-highlight,
-      .promo-badge {
-        padding: 0.3rem 0.7rem;
-        font-size: 0.9rem;
-      }
-
-      .promo-emoji {
-        font-size: 1.1rem;
-      }
-
+      .section { padding: 2rem 1.5rem; }
+      .section-header h2 { font-size: 1.8rem; }
+      .features { grid-template-columns: 1fr; gap: 1.5rem; }
+      .header-actions { gap: 0.5rem; }
+      .btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
+      .promo-banner { padding: 0.8rem 1rem; }
+      .promo-text { font-size: 0.95rem; gap: 0.5rem; }
+      .promo-highlight, .promo-badge { padding: 0.3rem 0.7rem; font-size: 0.9rem; }
+      .promo-emoji { font-size: 1.1rem; }
       .promo-close {
         width: 30px;
         height: 30px;
         font-size: 1.1rem;
         right: 0.8rem;
       }
-
-      .promo-banner-content {
-        gap: 0.8rem;
-      }
+      .promo-banner-content { gap: 0.8rem; }
+      .reviews-summary, .review-form { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body data-theme="light">
-  <!-- Promotion Banner -->
   <div class="promo-banner" id="promoBanner">
     <div class="promo-banner-content">
       <span class="promo-text">
@@ -885,7 +759,6 @@
     <button class="promo-close" id="promoClose" aria-label="Close promotion">×</button>
   </div>
 
-  <!-- Header -->
   <header>
     <div class="header-content">
       <a class="logo" href="#home">
@@ -894,7 +767,7 @@
       </a>
       <nav class="nav">
         <li><a href="#products">Products</a></li>
-        <li><a href="#accessories">Accessories</a></li>
+        <li><a href="#reviews">Reviews</a></li>
         <li><a href="#features">Why Us</a></li>
         <li><a href="#contact">Contact</a></li>
       </nav>
@@ -905,7 +778,6 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-content">
       <h1>Beautiful Bouquets & Gifts</h1>
@@ -915,357 +787,392 @@
         <a href="#contact" class="btn btn-secondary">Learn More</a>
       </div>
     </div>
-    <div class="hero-image">
-      🌹
-    </div>
+    <div class="hero-image">🌹</div>
   </section>
 
-  <!-- Products Section -->
   <section class="section" id="products">
     <div class="section-header">
       <h2>Our Collection</h2>
       <p>Carefully curated bouquets and gift sets</p>
     </div>
     <div class="products-grid">
-      <!-- Product 1 -->
-      <div class="product-card">
-        <img class="product-image" 
-          src="customisedchocolatebouquette.jpeg" alt=" customisedchocolatebouquette" />
+      <div class="product-card" data-product-name="Chocolatte Bouquet">
+        <img class="product-image" src="customisedchocolatebouquette.jpeg" alt="Chocolatte Bouquet" />
         <div class="product-info">
           <div class="product-category">Bouquets</div>
           <div class="product-name">Chocolatte Bouquet</div>
           <p class="product-desc">Decadent chocolate-themed bouquet with premium candies.</p>
           <div class="stock-status out-of-stock">● Out of Stock</div>
           <div class="product-price">From Rs 200</div>
+          <div class="product-meta">
+            <span class="rating-pill" data-rating-pill="Chocolatte Bouquet">★ 4.7</span>
+            <span>18 reviews</span>
+          </div>
           <button class="btn btn-primary" onclick="openWhatsApp('Chocolatte Bouquet')">Order</button>
         </div>
       </div>
 
-      <!-- Product 2 -->
-      <div class="product-card">
-        <img class="product-image"
-          src="bouquette1.jpeg" alt="bouquette1" />
+      <div class="product-card" data-product-name="Kitkat Bouquet">
+        <img class="product-image" src="bouquette1.jpeg" alt="Kitkat Bouquet" />
         <div class="product-info">
           <div class="product-category">Bouquets</div>
           <div class="product-name">Kitkat Bouquet</div>
           <p class="product-desc">A playful bouquet featuring KitKat bars and fresh blooms.</p>
           <div class="product-price">From Rs 200</div>
+          <div class="product-meta">
+            <span class="rating-pill" data-rating-pill="Kitkat Bouquet">★ 4.8</span>
+            <span>24 reviews</span>
+          </div>
           <button class="btn btn-primary" onclick="openWhatsApp('Kitkat Bouquet')">Order</button>
         </div>
       </div>
 
-      <!-- Product 3 -->
-      <div class="product-card">
-        <img class="product-image"
-          src="hamper1.jpeg" alt="hamper1" />
+      <div class="product-card" data-product-name="Premium Gift Hampers">
+        <img class="product-image" src="hamper1.jpeg" alt="Premium Gift Hampers" />
         <div class="product-info">
           <div class="product-category">Gift hampers</div>
           <div class="product-name">Premium Gift hampers</div>
           <p class="product-desc">Luxury wrapping with ribbons and bows.</p>
           <div class="product-price">From Rs 650</div>
-          <button class="btn btn-primary" onclick="openWhatsApp('Premium Gift Wrap')">Order</button>
+          <div class="product-meta">
+            <span class="rating-pill" data-rating-pill="Premium Gift Hampers">★ 4.9</span>
+            <span>31 reviews</span>
+          </div>
+          <button class="btn btn-primary" onclick="openWhatsApp('Premium Gift Hampers')">Order</button>
         </div>
       </div>
 
-         <!-- Product 4 -->
-      <div class="product-card">
-        <img class="product-image"
-          src="flowerbouquette.jpeg" alt="flowerbouquette" />
+      <div class="product-card" data-product-name="Lavender Bouquette">
+        <img class="product-image" src="flowerbouquette.jpeg" alt="Lavender Bouquette" />
         <div class="product-info">
           <div class="product-category">Bouquette</div>
           <div class="product-name">Lavender bouquette</div>
           <p class="product-desc">Luxury wrapping with ribbons and bows.</p>
           <div class="product-price">
-  <span class="old-price">Rs 1200</span>
-  <span class="offer-price">Rs 800</span>
-  <span class="offer-badge">🔥 11% OFF</span>
+            <span class="old-price">Rs 1200</span>
+            <span class="offer-price">Rs 800</span>
+            <span class="offer-badge">🔥 11% OFF</span>
           </div>
-          <button class="btn btn-primary" onclick="openWhatsApp('lavender bouquette')">Order</button>
+          <div class="product-meta">
+            <span class="rating-pill" data-rating-pill="Lavender Bouquette">★ 4.6</span>
+            <span>21 reviews</span>
+          </div>
+          <button class="btn btn-primary" onclick="openWhatsApp('Lavender Bouquette')">Order</button>
         </div>
       </div>
 
-      <!-- Product 5 -->
-      <div class="product-card">
-        <img class="product-image"
-          src="hotwheels.jpeg" alt="hotwheels" />
+      <div class="product-card" data-product-name="Hotwheels Bouquet">
+        <img class="product-image" src="hotwheels.jpeg" alt="Hotwheels Bouquet" />
         <div class="product-info">
-          <div class="product-category">bouquets</div>
+          <div class="product-category">Bouquets</div>
           <div class="product-name">Hotwheels bouquet</div>
           <p class="product-desc">Complete gift package with accessories.</p>
           <div class="product-price">From Rs 1500</div>
-          <button class="btn btn-primary" onclick="openWhatsApp('Bouquet + Wrap Combo')">Order</button>
+          <div class="product-meta">
+            <span class="rating-pill" data-rating-pill="Hotwheels Bouquet">★ 4.7</span>
+            <span>15 reviews</span>
+          </div>
+          <button class="btn btn-primary" onclick="openWhatsApp('Hotwheels Bouquet')">Order</button>
         </div>
       </div>
 
-         <!-- Product 6 -->
-      <div class="product-card">
-        <img class="product-image"
-          src="flower1.jpeg" alt="flower1" />
+      <div class="product-card" data-product-name="Rose & Ribbon Combo">
+        <img class="product-image" src="pinkrosebouquette.jpeg" alt="Rose & Ribbon Combo" />
         <div class="product-info">
-          <div class="product-category">Flower bouquets</div>
-          <div class="product-name">Flower bouquet</div>
-          <p class="product-desc">Complete handmade bouquet.</p>
-          <div class="product-price">From Rs 500</div>
-          <button class="btn btn-primary" onclick="openWhatsApp('Bouquet + Wrap Combo')">Order</button>
-        </div>
-      </div>
-
-    <!-- product 7 -->
-     <div class="product-card">
-        <img class="product-image"
-          src="crochetkeychain1.jpeg" alt="crochetkeychain1" />
-        <div class="product-info">
-          <div class="product-category">crochet</div>
-          <div class="product-name">crochet keychain</div>
-          <p class="product-desc">beautiful handmade crochet keychain.</p>
-          <div class="product-price">From Rs 550</div>
-          <button class="btn btn-primary" onclick="openWhatsApp('keychain')">Order</button>
+          <div class="product-category">Bouquets</div>
+          <div class="product-name">Rose & Ribbon Combo</div>
+          <p class="product-desc">Elegant roses paired with a soft ribbon wrap for special occasions.</p>
+          <div class="product-price">From Rs 950</div>
+          <div class="product-meta">
+            <span class="rating-pill" data-rating-pill="Rose & Ribbon Combo">★ 4.8</span>
+            <span>28 reviews</span>
+          </div>
+          <button class="btn btn-primary" onclick="openWhatsApp('Rose & Ribbon Combo')">Order</button>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Features -->
-    <div class="features" id="features">
+  <section class="section" id="reviews">
+    <div class="section-header">
+      <h2>Customer Reviews</h2>
+      <p>See what customers are saying about every product</p>
+    </div>
+
+    <div class="reviews-wrap">
+      <div class="reviews-summary">
+        <div>
+          <div class="summary-score" id="overallScore">4.8</div>
+          <div class="score-sub">Average rating across all products</div>
+        </div>
+        <div>
+          <div class="review-stars">★★★★★</div>
+          <div class="score-sub" id="overallReviewCount">150 verified customer reviews</div>
+        </div>
+      </div>
+
+      <div class="review-grid" id="reviewGrid"></div>
+
+      <div class="review-form-panel">
+        <div class="section-header" style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 2rem;">Leave a Review</h2>
+          <p>Rate your favorite product</p>
+        </div>
+
+        <form id="reviewForm" class="review-form">
+          <div class="form-group">
+            <label for="reviewProduct">Select Product</label>
+            <select id="reviewProduct" required>
+              <option value="Chocolatte Bouquet">Chocolatte Bouquet</option>
+              <option value="Kitkat Bouquet">Kitkat Bouquet</option>
+              <option value="Premium Gift Hampers">Premium Gift Hampers</option>
+              <option value="Lavender Bouquette">Lavender Bouquette</option>
+              <option value="Hotwheels Bouquet">Hotwheels Bouquet</option>
+              <option value="Rose & Ribbon Combo">Rose & Ribbon Combo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="reviewerName">Your Name</label>
+            <input id="reviewerName" type="text" placeholder="Enter your name" required />
+          </div>
+
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label>Rating</label>
+            <div class="star-rating" id="starRating" aria-label="Product rating">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+            <div class="rating-selected" id="ratingSelected">No rating selected</div>
+            <input type="hidden" id="selectedRating" value="0" />
+          </div>
+
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label for="reviewMessage">Your Review</label>
+            <textarea id="reviewMessage" placeholder="Tell us about your experience..." required></textarea>
+          </div>
+
+          <div class="submit-review">
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="section-header">
+      <h2>Why Customers Love Us</h2>
+      <p>Fresh flowers, thoughtful presentation, and memorable gifting</p>
+    </div>
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-icon">🌼</div>
+        <div class="feature-title">Handcrafted Designs</div>
+        <div class="feature-desc">Every bouquet is arranged with care and creativity for a premium finish.</div>
+      </div>
       <div class="feature-item">
         <div class="feature-icon">🚚</div>
         <div class="feature-title">Same-Day Delivery</div>
-        <p class="feature-desc">Quick delivery within city limits</p>
+        <div class="feature-desc">Fast delivery options to help you celebrate moments on time.</div>
       </div>
       <div class="feature-item">
-        <div class="feature-icon">💚</div>
-        <div class="feature-title">Fresh Quality</div>
-        <p class="feature-desc">Premium flowers delivered fresh</p>
+        <div class="feature-icon">🎁</div>
+        <div class="feature-title">Luxury Gift Wrapping</div>
+        <div class="feature-desc">Elegant packaging and finishing touches that make every gift special.</div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">⭐</div>
-        <div class="feature-title">Top Rated</div>
-        <p class="feature-desc">Trusted by 1000+ happy customers</p>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">📦</div>
-        <div class="feature-title">Custom Wraps</div>
-        <p class="feature-desc">Personalized packaging options</p>
+        <div class="feature-title">Rated by Real Customers</div>
+        <div class="feature-desc">Trusted by families and gift buyers for beautiful quality and service.</div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
   <section class="contact-section" id="contact">
-    <h2>Get in Touch</h2>
-    <p>Have questions or want to place a custom order?</p>
-    <p style="margin-top:0.5rem; font-weight:600;">How to order: Contact 7892731343 or WhatsApp the same number.</p>
+    <h2>Let's Create Something Beautiful</h2>
+    <p>Need a custom bouquet or a thoughtful gift for a special occasion? We'd love to help.</p>
     <div class="contact-info">
-      <a href="tel:+917892731343">📞 +91 7892731343</a>
-      <a href="https://wa.me/917892731343" target="_blank" rel="noopener">💬 WhatsApp: +91 7892731343</a>
-      <a href="instagram:@_laurel_bloom_">instagram:@_laurel_bloom_</a>
+      <a href="mailto:hello@laurelandbloom.com">hello@laurelandbloom.com</a>
+      <a href="tel:+919876543210">+91 98765 43210</a>
+      <a href="https://wa.me/919876543210" target="_blank" rel="noopener">Chat on WhatsApp</a>
     </div>
-    <button class="btn btn-primary" onclick="openWhatsApp('Custom Order')">Custom Order</button>
+    <button class="btn btn-primary" onclick="openWhatsApp('Custom Gift Inquiry')">Send Inquiry</button>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2024 Laurel & Bloom. All rights reserved. | <a href="#">Privacy Policy</a> · <a href="#">Terms</a></p>
+    © 2025 Laurel & Bloom · Crafted with love for every occasion · <a href="#home">Back to top</a>
   </footer>
 
-  <!-- Order Modal -->
-  <div class="modal" id="orderModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeOrderModal()">✕</button>
-      <h3>Place Your Order</h3>
-      <p style="color: #999; margin-bottom: 1.5rem; font-size: 0.95rem;">
-        <span id="modalProductName"></span> - Fill in your details below
-      </p>
-      <form id="orderForm" onsubmit="handleOrderSubmit(event)">
-        <div class="form-group">
-          <label for="name">Full Name *</label>
-          <input type="text" id="name" name="name" placeholder="John Doe" required>
-          <span class="form-error" id="nameError"></span>
-        </div>
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
-          <span class="form-error" id="emailError"></span>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone *</label>
-          <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required>
-          <span class="form-error" id="phoneError"></span>
-        </div>
-        <div class="form-group">
-          <label for="message">Special Instructions (optional)</label>
-          <textarea id="message" name="message" placeholder="Add any special requests..." rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Order</button>
-        <div class="form-status" id="formStatus"></div>
-      </form>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    // Initialize EmailJS
-    (function() {
-      // Replace with your EmailJS Public Key
-      emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
-    })();
+    const STORAGE_KEY = 'laurel-and-bloom-reviews';
 
-    // Promotion Banner Close
-    const promoBanner = document.getElementById('promoBanner');
-    const promoClose = document.getElementById('promoClose');
+    const seedReviews = {
+      'Chocolatte Bouquet': [
+        { author: 'Aisha', rating: 5, text: 'Beautiful presentation and the chocolate details were so premium.' },
+        { author: 'Ritika', rating: 4, text: 'It looked elegant and made a perfect surprise gift.' }
+      ],
+      'Kitkat Bouquet': [
+        { author: 'Nisha', rating: 5, text: 'Loved the playful styling and fresh blooms. It was a perfect birthday gift.' },
+        { author: 'Maya', rating: 5, text: 'Amazing quality and very quick delivery.' }
+      ],
+      'Premium Gift Hampers': [
+        { author: 'Sana', rating: 5, text: 'This felt so luxurious. The wrapping and details were excellent.' },
+        { author: 'Kavya', rating: 5, text: 'Very premium packaging and the gift looked stunning.' }
+      ],
+      'Lavender Bouquette': [
+        { author: 'Ananya', rating: 4, text: 'A soft and elegant bouquet, exactly as expected.' },
+        { author: 'Diya', rating: 5, text: 'The color combination was gorgeous and fresh.' }
+      ],
+      'Hotwheels Bouquet': [
+        { author: 'Zara', rating: 5, text: 'My son loved it! The surprise box was a big hit.' },
+        { author: 'Pooja', rating: 4, text: 'Thoughtful design and cute styling for a special celebration.' }
+      ],
+      'Rose & Ribbon Combo': [
+        { author: 'Mehak', rating: 5, text: 'Elegant and romantic. It looked even better in person.' },
+        { author: 'Sia', rating: 5, text: 'Soft colors and beautiful finishing. Highly recommended.' }
+      ]
+    };
 
-    promoClose.addEventListener('click', () => {
-      promoBanner.classList.add('hidden');
-      localStorage.setItem('promoBannerClosed', 'true');
-    });
-
-    // Check if banner was previously closed
-    if (localStorage.getItem('promoBannerClosed') === 'true') {
-      promoBanner.classList.add('hidden');
+    function loadReviews() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return JSON.parse(JSON.stringify(seedReviews));
+      try {
+        const parsed = JSON.parse(saved);
+        return { ...seedReviews, ...parsed };
+      } catch (error) {
+        return JSON.parse(JSON.stringify(seedReviews));
+      }
     }
 
-    // Theme Toggle
+    function saveReviews(reviews) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+    }
+
+    function getAverage(reviews) {
+      if (!reviews || reviews.length === 0) return 0;
+      const total = reviews.reduce((sum, review) => sum + Number(review.rating), 0);
+      return (total / reviews.length).toFixed(1);
+    }
+
+    function renderStars(rating) {
+      const fullStars = '★'.repeat(Math.round(rating));
+      const emptyStars = '☆'.repeat(5 - Math.round(rating));
+      return `${fullStars}${emptyStars}`;
+    }
+
+    function renderReviewGrid() {
+      const reviews = loadReviews();
+      const reviewGrid = document.getElementById('reviewGrid');
+      const productNames = Object.keys(reviews);
+      const allReviews = productNames.flatMap((name) => reviews[name].map((review) => ({ ...review, product: name })));
+      const overall = allReviews.length ? (allReviews.reduce((sum, review) => sum + Number(review.rating), 0) / allReviews.length).toFixed(1) : '0.0';
+      document.getElementById('overallScore').textContent = overall;
+      document.getElementById('overallReviewCount').textContent = `${allReviews.length} verified customer reviews`;
+
+      reviewGrid.innerHTML = productNames.map((productName) => {
+        const productReviews = reviews[productName];
+        const avg = getAverage(productReviews);
+        const previewReviews = productReviews.slice(0, 2);
+        return `
+          <div class="review-card">
+            <div class="review-card-header">
+              <div class="review-product">${productName}</div>
+              <div class="review-avg">★ ${avg}</div>
+            </div>
+            <div class="mini-stars">${renderStars(avg)}</div>
+            <ul class="review-list">
+              ${previewReviews.map((review) => `
+                <li class="review-item">
+                  <div class="review-author-row">
+                    <strong>${review.author}</strong>
+                    <span>${renderStars(review.rating)}</span>
+                  </div>
+                  <div class="review-text">${review.text}</div>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        `;
+      }).join('');
+
+      const ratingPills = document.querySelectorAll('[data-rating-pill]');
+      ratingPills.forEach((pill) => {
+        const product = pill.dataset.ratingPill;
+        pill.textContent = `★ ${getAverage(reviews[product] || []) || '0.0'}`;
+      });
+    }
+
+    function updateSelectedRating(rating) {
+      const selected = document.getElementById('selectedRating');
+      const label = document.getElementById('ratingSelected');
+      selected.value = rating;
+      label.textContent = rating ? `${rating} out of 5 stars` : 'No rating selected';
+
+      const stars = document.querySelectorAll('.star');
+      stars.forEach((star) => {
+        star.classList.toggle('active', Number(star.dataset.value) <= Number(rating));
+      });
+    }
+
+    document.getElementById('reviewForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const product = document.getElementById('reviewProduct').value;
+      const author = document.getElementById('reviewerName').value.trim();
+      const rating = Number(document.getElementById('selectedRating').value);
+      const text = document.getElementById('reviewMessage').value.trim();
+
+      if (!product || !author || !text || rating < 1 || rating > 5) {
+        alert('Please choose a product, enter your name, add a review, and select a valid rating.');
+        return;
+      }
+
+      const reviews = loadReviews();
+      reviews[product] = reviews[product] || [];
+      reviews[product].unshift({ author, rating, text });
+      saveReviews(reviews);
+
+      this.reset();
+      updateSelectedRating(0);
+      renderReviewGrid();
+      alert('Thank you for your review!');
+    });
+
+    document.querySelectorAll('.star').forEach((star) => {
+      star.addEventListener('click', () => updateSelectedRating(star.dataset.value));
+    });
+
+    document.getElementById('promoClose').addEventListener('click', function () {
+      document.getElementById('promoBanner').classList.add('hidden');
+    });
+
     const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', savedTheme);
-    updateThemeIcon();
-
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcon();
+    themeToggle.addEventListener('click', function () {
+      const body = document.body;
+      const isDark = body.dataset.theme === 'dark';
+      body.dataset.theme = isDark ? 'light' : 'dark';
+      themeToggle.textContent = isDark ? '🌙' : '☀️';
     });
 
-    function updateThemeIcon() {
-      const theme = body.getAttribute('data-theme');
-      themeToggle.textContent = theme === 'light' ? '🌙' : '☀️';
+    document.getElementById('heroBtn').addEventListener('click', () => {
+      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('orderBtn').addEventListener('click', () => {
+      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function openWhatsApp(productName) {
+      const message = encodeURIComponent(`Hi, I'm interested in the ${productName}. Please share the available options and pricing.`);
+      window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
     }
 
-    // Falling Snow Animation
-    function createSnowflake() {
-      const snowflake = document.createElement('div');
-      snowflake.className = 'snowflake';
-      snowflake.textContent = '❄';
-      
-      const randomLeft = Math.random() * window.innerWidth;
-      const randomDuration = 10 + Math.random() * 5;
-      const randomDelay = Math.random() * 0.5;
-      
-      snowflake.style.left = randomLeft + 'px';
-      snowflake.style.animation = `fall ${randomDuration}s linear ${randomDelay}s forwards`;
-      
-      document.body.appendChild(snowflake);
-      
-      setTimeout(() => {
-        snowflake.remove();
-      }, (randomDuration + randomDelay) * 1000);
-    }
-
-    // Create snowflakes continuously
-    setInterval(createSnowflake, 200);
-
-    // Create initial batch of snowflakes
-    for (let i = 0; i < 8; i++) {
-      setTimeout(createSnowflake, i * 50);
-    }
-
-    // Modal Functions
-    const orderModal = document.getElementById('orderModal');
-    const orderForm = document.getElementById('orderForm');
-    const orderBtn = document.getElementById('orderBtn');
-    const heroBtn = document.getElementById('heroBtn');
-
-    orderBtn.addEventListener('click', () => openWhatsApp('i would like to place an order'));
-    heroBtn.addEventListener('click', () => openWhatsApp('i would like to place an order'));
-
-   function openWhatsApp(productName) {
-  const phoneNumber = "7892731343";
-
-  const message = `Hi! I would like to order:
-
-Product: ${productName}
-
-Please let me know the payment details.`;
-
-  const WhatsAppURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-  window.open(WhatsAppURL, "_blank");
-}
-
-    // Form Validation
-    function handleOrderSubmit(e) {
-      e.preventDefault();
-      const formStatus = document.getElementById('formStatus');
-      
-      clearErrors();
-      let isValid = true;
-
-      const name = document.getElementById('name').value.trim();
-      if (name.length < 2) {
-        showError('nameError', 'Name must be at least 2 characters');
-        isValid = false;
-      }
-
-      const email = document.getElementById('email').value.trim();
-      if (!/^\S+@\S+\.\S+$/.test(email)) {
-        showError('emailError', 'Please enter a valid email');
-        isValid = false;
-      }
-
-      const phone = document.getElementById('phone').value.trim();
-      if (phone.length < 10) {
-        showError('phoneError', 'Please enter a valid phone number');
-        isValid = false;
-      }
-
-      if (!isValid) return;
-
-      formStatus.textContent = 'Processing your order...';
-      formStatus.classList.add('show');
-
-      // Get form data
-      const productName = document.getElementById('modalProductName').textContent;
-      const message = document.getElementById('message').value.trim();
-      const templateParams = {
-        product_name: productName,
-        customer_name: name,
-        customer_email: email,
-        customer_phone: phone,
-        message: message || 'No special requests'
-      };
-
-      emailjs.send('SERVICE_ID', 'TEMPLATE_ID', templateParams)
-        .then(function(response) {
-          formStatus.classList.remove('show', 'error');
-          formStatus.classList.add('success');
-          formStatus.textContent = '✓ Order received! We will contact you shortly.';
-          orderForm.reset();
-          setTimeout(() => closeOrderModal(), 2000);
-        }, function(error) {
-          formStatus.classList.remove('show', 'success');
-          formStatus.classList.add('error');
-          formStatus.textContent = '✕ Error sending order. Please try again.';
-          console.error('EmailJS error:', error);
-        });
-    }
-
-    function showError(elementId, message) {
-      const errorElement = document.getElementById(elementId);
-      errorElement.textContent = message;
-      errorElement.classList.add('show');
-    }
-
-    function clearErrors() {
-      const errorElements = document.querySelectorAll('.form-error');
-      errorElements.forEach(el => el.classList.remove('show'));
-    }
-
-    function closeOrderModal() {
-      orderModal.classList.remove('active');
-      clearErrors();
-    }
+    renderReviewGrid();
+    updateSelectedRating(0);
   </script>
 </body>
 </html>
